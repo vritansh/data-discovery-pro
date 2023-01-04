@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: ddpro
+Version: 0.0.1
+Summary: Data Discovery Pro for Automated EDA and ML
+Author: Vritansh Kamal
+Author-email: vritansh14@gmail.com
+License: MIT
+Keywords: machine-learning data-science jupyter-notebook
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+License-File: LICENSE
