@@ -1,4 +1,5 @@
-ddpro - Data Discovery Pro 
+<h1> ddpro - Data Discovery Pro </h1>
+
 🎉 Welcome to the ddpro library! 🎉
 
 This library makes it easy to perform automatic exploratory data analysis (EDA) and inference on your datasets.
