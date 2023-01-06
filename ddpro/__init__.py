@@ -5,13 +5,7 @@ import sys
 import logging
 import os
 
-from ddpro._readconfig import initial_setup,config
 from ddpro.main import DdPro
-
-def __init__(self):
-        initial_setup()
-        print(config)
-
 
 
 # from builtins import *

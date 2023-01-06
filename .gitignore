@@ -1,0 +1,29 @@
+# PyCharm packages
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Packaging files
+*.egg-info/
+*.eggs/
+dist/
+build/*
+./ddpro/titanic.csv
+./ddpro/titanic.json
+# Other files
+*.swp
+*.swo
+
+# VCS folders
+.git/
+.hg/
+.svn/
+build/lib/ddpro/__init__.py
+build/lib/ddpro/_readconfig.py

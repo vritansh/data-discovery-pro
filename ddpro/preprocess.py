@@ -64,9 +64,20 @@ class Preprocessor():
             #threshold
             categories_threshold = self.config.get("THRESHOLD","CATEGORIES_THRESHOLD")
             numerical_columns = list(self.basetypes.numerical)
+            id_types = set()
             for c in numerical_columns:
+
+                #Remove columns with specified threshold for categories added in numerical variables
                 if(self.df[c].nunique() < int(categories_threshold)):
                             self.basetypes.numerical.remove(c)
+
+                #Remove columns with Only IDs. If the number of unique elements is equal to total number of elements
+                if(self.df[c].nunique() == len(self.df)):
+                             self.basetypes.numerical.remove(c)
+                             id_types.add(c)
+            self.basetypes.id= id_types
+
+
 
         except Exception as e :
             print(e)

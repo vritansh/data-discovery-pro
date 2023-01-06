@@ -4,16 +4,10 @@ from builtins import *
 from ddpro.basetypes import BaseTypes
 from ddpro.plot import *
 
-from ddpro._readconfig import config
-import configparser
-import os
 import pandas as pd
-import numpy as np
 import pathlib
 from ddpro._readconfig import *
 from ddpro.preprocess import *
-from ddpro.preprocess import *
-
 
 class DdPro():
     def __init__(self, data_source, target_column, options):
@@ -29,19 +23,19 @@ class DdPro():
             self.Options = options
             self.target_column = target_column
             self.df = self._convert_to_dataframe()
-            # self._raw_data_exploration()
-            # Missing values Barplot
-            self._raw_data_visualization()
-            self._data_visualization()
+        else:
+            raise Exception(f"{data_source} does not exist in list of allowed extensions")
 
-    def _verify_extensions(self, data):
+    def _verify_extensions(self, data_source):
         """
-        Verify extensions exist in the list of allowed file extensions. Defined in config.ini
-        """
-        if data.endswith(tuple(config.get('FILE_EXTENSIONS', 'ALLOWED_FILE_EXTENSIONS'))):
+       Verify extensions exist in the list of allowed file extensions. Defined in config.ini
+       :param data_source:
+       :return:
+       """
+        if data_source.endswith(tuple(config.get('FILE_EXTENSIONS', 'ALLOWED_FILE_EXTENSIONS'))):
             return True
         else:
-            raise Exception(f'File type {data} is not supported')
+            return False
 
     def _convert_to_dataframe(self):
         """
@@ -58,7 +52,7 @@ class DdPro():
 
     def _raw_data_exploration(self):
         """"
-            Showcase how the data looks like in the EDA
+            Showcase how the data looks like in text format
         """
         df = self.df
         print("** Head **")
@@ -79,11 +73,43 @@ class DdPro():
         self.plot.bar_plot_from_dict(target_values, 'VISUALIZATION_BAR_PLOT_TARGET')
 
     def _data_visualization(self):
+        """
+        This method preprocesses and calls relevant visualization. Curently only supports matplotlib.
+        Future - Add support for plotly
+        :return:
+        """
+        # Visualize raw data before cleaning
+        self._raw_data_visualization()
+        print(" ran once ")
         preprocesor = Preprocessor(self.df)
         self.df, self.basetypes = preprocesor.preprocess_dataframe()
-        # self.plot.histogram_plot_from_dataframe_plotly(self.df,
-        #                                        self.basetypes.numerical)
+        print("Categorical Columns : ", self.basetypes.categorical)
+        print("Categorical Columns : ",self.basetypes.numerical)
 
-        self.plot.histogram_gridplot(self.df, self.basetypes.numerical)
+        if (config.get("THEME", "LIBRARY") == 'matplotlib'):
+            self._matplotlib_visualization()
+        else:
+            raise Exception("Only matplotlib is supported")
 
-test = DdPro('titanic.csv','Survived', 'random')
+    def _matplotlib_visualization(self):
+        """
+        Create visualizations related to matplotlib
+        :return:
+        """
+        # Single plots vs grid plots based on the data
+        # Distribution Related Plots for Normality
+        if (len(self.basetypes.numerical) <= 2):
+            self.plot.histogram_grid(self.df, self.basetypes.numerical)
+            self.plot.boxplot_grid(self.df, self.basetypes.numerical)
+            self.plot.qqplot_from_dataframe(self.df, self.basetypes.numerical)
+        # else:
+        #     self.plot.histogram_plot_from_dataframe(self.df, self.basetypes.numerical)
+        #     self.plot.box_plot_from_dataframe(self.df, self.basetypes.numerical)
+
+
+        #Correlation between multiple variables
+        self.plot.pairplot_from_dataframe(self.df, self.basetypes.numerical)
+
+
+    def generate_plots(self):
+            self._data_visualization()
