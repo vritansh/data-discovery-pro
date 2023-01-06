@@ -12,7 +12,7 @@ from ddpro.preprocess import *
 class DdPro():
     def __init__(self, data_source, target_column, options):
         """
-        Open datasets ``train`` and ``test`` as CSV or JSON files and store in pandas DataFrames ``Base.train`` and ``Base.test``. Set ``Base.target`` and ``Base.uid`` values based on parameters. Initialize ``Plot``, ``Feature``, and ``Xgb`` components.
+        Intialize data. Replace this method with load_dataset
         """
         initial_setup()
         self.basetypes = BaseTypes()
