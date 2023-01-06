@@ -1,8 +1,12 @@
 <h1> ddpro - Data Discovery Pro </h1>
 
+Note:- This is an MVP release.
+https://pypi.org/project/ddpro/
+
+
 🎉 Welcome to the ddpro library! 🎉
 
-This library makes it easy to perform automatic exploratory data analysis (EDA) and inference on your datasets.
+This library makes it easy to perform automatic exploratory data analysis (EDA), Hypothesis Testing, AutoML and inference on your datasets.
 
 Installation
 To install ddpro, simply use pip:
