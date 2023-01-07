@@ -23,6 +23,7 @@ class DdPro():
             self.Options = options
             self.target_column = target_column
             self.df = self._convert_to_dataframe()
+
         else:
             raise Exception(f"{data_source} does not exist in list of allowed extensions")
 
@@ -80,7 +81,6 @@ class DdPro():
         """
         # Visualize raw data before cleaning
         self._raw_data_visualization()
-        print(" ran once ")
         preprocesor = Preprocessor(self.df)
         self.df, self.basetypes = preprocesor.preprocess_dataframe()
         print("Categorical Columns : ", self.basetypes.categorical)
@@ -110,6 +110,7 @@ class DdPro():
         #Correlation between multiple variables
         self.plot.pairplot_from_dataframe(self.df, self.basetypes.numerical)
 
-
-    def generate_plots(self):
+    def discover(self):
+            self._raw_data_exploration()
             self._data_visualization()
+

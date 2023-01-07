@@ -1,13 +1,10 @@
 import matplotlib.pyplot as plt
-import pandas as pd
 from ddpro._readconfig import *
 import plotly.express as px
 import seaborn as sns
-import statsmodels.api as sm
 import scipy.stats as stats
 
 __all__ = ['Visualize']
-
 
 class Visualize():
     """
@@ -55,7 +52,6 @@ class Visualize():
             plt.xlabel(config.get(label, 'X_LABEL'))
             plt.title(config.get(label, 'TITLE') + " " + str(c))
             plt.xticks(rotation=config.get(label, 'ROTATION'))
-
             plt.show()
 
     def box_plot_from_dataframe(self, dataframe, columns, label='VISUALIZATION_HISTOGRAM_DEFAULT'):
@@ -111,12 +107,13 @@ class Visualize():
         col = 0
         for c in columns:
             try:
+                title = "Distribution of column " + str(c)
                 if ( total_cols <= 2 ):
                     axes[col].hist(dataframe[c], color='c', bins =5)
-                    axes[col].set_title("Distribution : ",c)
+                    axes[col].set_title(title)
                 else:
                     axes[row][col].hist(dataframe[c])
-                    axes[row][col].set_title(c)
+                    axes[row][col].set_title(title)
             except Exception as e:
                 print(e)
                 logger.error(e)
@@ -148,12 +145,13 @@ class Visualize():
         col = 0
         for c in columns:
             try:
+                title = "Distribution of column "+str(c)
                 if (2 >= len(columns)):
                     axes[col].boxplot(dataframe[c], vert=False)
-                    axes[col].set_title(c)
+                    axes[col].set_title(title)
                 else:
                     axes[row][col].boxplot(dataframe[c], vert=False)
-                    axes[row][col].set_title(c)
+                    axes[row][col].set_title(title)
             except Exception as e:
                 logger.error(e)
             finally:
