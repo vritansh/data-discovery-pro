@@ -5,10 +5,9 @@ here = path.abspath(path.dirname(__file__))
 # Get the long description from the README file
 # encoding is not supported in py27
 # with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
-
 setup(
     name='ddpro',
-    version='0.0.1',
+    version='0.0.2',
     description='Data Discovery Pro for Automated EDA and ML',
     author='Vritansh Kamal',
     author_email='vritansh14@gmail.com',
@@ -23,7 +22,8 @@ setup(
     zip_safe=False,
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
-        'Development Status :: Test',
+
+        'Development Status :: 1 - Planning',
         'Intended Audience :: Developers',
         'Intended Audience :: Information Technology',
         'Intended Audience :: Science/Research',
