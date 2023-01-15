@@ -27,7 +27,6 @@ class Visualize():
         """
         if (len(data_dict) == 0):
             return
-
         x = list(data_dict.keys())
         y = list(data_dict.values())
         plt.bar(x, y, align='center', tick_label=x)

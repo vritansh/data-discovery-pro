@@ -15,15 +15,14 @@ class DdPro():
         Intialize data. Replace this method with load_dataset
         """
         initial_setup()
-        self.basetypes = BaseTypes()
-        self.plot = Visualize()
 
         if (self._verify_extensions(data_source)):
+            self.basetypes = BaseTypes()
+            self.plot = Visualize()
             self.DataSource = data_source
             self.Options = options
             self.target_column = target_column
             self.df = self._convert_to_dataframe()
-
         else:
             raise Exception(f"{data_source} does not exist in list of allowed extensions")
 
@@ -56,6 +55,7 @@ class DdPro():
             Showcase how the data looks like in text format
         """
         df = self.df
+        print("*************  Pre-Cleaning Data Analysis ***************")
         print("** Head **")
         print(df.head())
         print("** Shape **")
@@ -102,11 +102,6 @@ class DdPro():
             self.plot.histogram_grid(self.df, self.basetypes.numerical)
             self.plot.boxplot_grid(self.df, self.basetypes.numerical)
             self.plot.qqplot_from_dataframe(self.df, self.basetypes.numerical)
-        # else:
-        #     self.plot.histogram_plot_from_dataframe(self.df, self.basetypes.numerical)
-        #     self.plot.box_plot_from_dataframe(self.df, self.basetypes.numerical)
-
-
         #Correlation between multiple variables
         self.plot.pairplot_from_dataframe(self.df, self.basetypes.numerical)
 
