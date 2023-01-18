@@ -22,10 +22,8 @@ class Preprocessor():
         """
         try:
             # Remove columns
-
             self.df.drop(columns=self._percentage_threshold_columns_drop(self.df), inplace=True)
             self._extract_column_types()
-
             return self.df, self.basetypes
         except Exception as e:
             print(e)
@@ -66,7 +64,6 @@ class Preprocessor():
             numerical_columns = list(self.basetypes.numerical)
             id_types = set()
             for c in numerical_columns:
-
                 #Remove columns with specified threshold for categories added in numerical variables
                 if(self.df[c].nunique() < int(categories_threshold)):
                             self.basetypes.numerical.remove(c)
@@ -76,16 +73,12 @@ class Preprocessor():
                              self.basetypes.numerical.remove(c)
                              id_types.add(c)
             self.basetypes.id= id_types
-
-
-
         except Exception as e :
             print(e)
             raise Exception(e)
 
 
     def _calculate_technical_indicators(self, columns):
-        technical_indicator ={}
         all_technical_indicators = []
         try:
             for c in columns:
@@ -94,7 +87,6 @@ class Preprocessor():
                     technical_indicator['column'] = c
                     all_technical_indicators.append(technical_indicator.copy())
         except Exception as e :
-
             raise Exception(e)
 
 
