@@ -2,7 +2,8 @@
 
 Release : Planning [ Bug Fixes in Progress ]
 
-Update <>  26th April 2023 - I will resume work on this Repo starting May 10th. I'm open for discussion. | vk2501@columbia.edu | vritansh14@gmail.com
+Update <>  22nd May 2023 - This repo would have another update soon. 
+Below reseleases are targetted :
 
 https://pypi.org/project/ddpro
 
